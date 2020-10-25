@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title People List
+    body
+        table
+            thead
+                tr
+                    th(scope="col") First Name
+                    th(scope="col") Last Name
+                    th(scope="col") Age
+                    th(scope="col") Biography
+                    th(scope="col") Hair Color
+            tbody
+                each person in people
+                    tr
+                        td=person.firstName
+                        td=person.lastName
+                        td=person.age
+                        td=person.biography
+                        td=person.HairColor.color
