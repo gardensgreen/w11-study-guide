@@ -6,7 +6,7 @@ html(lang="en")
         title New Person
     body
         form(method="post" action="/new-person")
-            input(type="hidden" name="_csurf" value=csrfToken)
+            input(type="hidden" name="_csrf" value=csrfToken)
             label(for="firstName") First Name
             input(type="text" name="firstName" required)
             label(for="lastName") Last Name

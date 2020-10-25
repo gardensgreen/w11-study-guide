@@ -25,13 +25,30 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/new-person", csrfProtection, async (req, res) => {
-    const person = Person.build();
     const hairColors = await HairColor.findAll();
     res.render("new-person", {
-        person,
         hairColors,
         csrfToken: req.csrfToken(),
     });
+});
+
+app.post("/new-person", csrfProtection, async (req, res, next) => {
+    try {
+        console.log("Hey there");
+        const { firstName, lastName, age, biography, hairColorId } = req.body;
+
+        await Person.create({
+            firstName,
+            lastName,
+            age,
+            biography,
+            hairColorId,
+        });
+
+        res.redirect("/");
+    } catch (error) {
+        next(error);
+    }
 });
 
 //Server
