@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title New Person
+    body
+        form(method="post" action="/new-person")
+            input(type="hidden" name="_csurf" value=csrfToken)
+            label(for="firstName") First Name
+            input(type="text" name="firstName" required)
+            label(for="lastName") Last Name
+            input(type="text" name="lastName" required)
+            label(for="age") Age
+            input(type="number" name="age")
+            label(for="biography") Biography
+            textarea(name="biography")
+            label(for="hairColorId") Hair Color
+            select(name="hairColorId" required)
+                each hairColor in hairColors
+                    option(value=hairColor.id)=hairColor.color
+            button(type="submit") Add Person

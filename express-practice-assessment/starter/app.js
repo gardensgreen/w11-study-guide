@@ -4,7 +4,7 @@ const csrf = require("csurf");
 const { Person, HairColor } = require("./models");
 
 //setup route middlewares
-const csrfProtextion = csrf({ cookie: true });
+const csrfProtection = csrf({ cookie: true });
 
 const app = express();
 
@@ -22,6 +22,16 @@ app.get("/", async (req, res) => {
     });
 
     res.render("people-list", { people });
+});
+
+app.get("/new-person", csrfProtection, async (req, res) => {
+    const person = Person.build();
+    const hairColors = await HairColor.findAll();
+    res.render("new-person", {
+        person,
+        hairColors,
+        csrfToken: req.csrfToken(),
+    });
 });
 
 //Server
